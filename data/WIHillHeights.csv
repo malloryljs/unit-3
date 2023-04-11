@@ -1,82 +1,73 @@
-﻿county,elevation,name,map sheet
-Adams,1290,Friendship Mound,Adams
-Ashland,1872,Mount Whittlesey,Mount Whittlesey
-Barron,1630,Blue Hills,Strickland
-Bayfield,1700,Mount Telemark,Cable
-Brown,1020,Morrison Hill,Greenleaf
-Buffalo,1360,Montana Ridge,Lookout
-Burnett,1470,,Timberland
-Calumet,1130,North Tower Hill,Brothertown
-Chippewa,1530,Flambeau Ridge,Flambeau Ridge
-Clark,1480,,Abbotsford
-Columbia,1480,Baraboo Range,Durwoods Glen
-Crawford,1322,Rising Sun Ridge,Rising Sun
-Dane,1489,East Blue Mound,Blue Mounds
-Dodge,1230,,Nenno
-Door,860,,Namur
-Douglas,1369,Summit Hill,Empire Swamp
-Dunn,1354,Dunnewa Hill,Colfax North
-Eau Claire,1340,,Price
-Florence,1730,,Long Lake NE
-Fond du Lac,1270,Kettle Moraine,Eden
-Forest,1939,Sugar Bush Hill,Lake Lucerne
-Grant,1240,Military Ridge,Long Hollow
-Green,1173,,New Glarus
-Green Lake,1090,,Green Lake
-Iowa,1719,West Blue Mound,Blue Mounds
-Iron,1860,Penokee Range,Mt. Whittlesey
-Jackson,1409,Saddle Mound,Hatfield SE
-Jefferson,1062,Kettle Moraine,Little Prairie
-Juneau,1380,Johnson Hill,New Lisbon S.
-Kenosha,994,,Silver Lake
-Kewaunee,1020,Cherneyville Hill,Strangelville
-La Crosse,1400,Wadels Hill,Rosedale
-La Crosse,1400,,
-Lafayette,1440,N. Platte Mound,Rewey
-Langlade,1903,Kent Tower Hill,Polar
-Lincoln,1920,Lookout Mountain,Parrish
-Manitowoc,1047,,School Hill
-Marathon,1924,Rib Mountain,Wausau Wast
-Marinette,1660,,Armstrong Cr.
-Marquette,1320,,Westfield West
-Menominee,1433,,Zoar
-Milwaukee,868,,Hales Corners
-Monroe,1450,Greenfield Hill,Alderwood Lake
-Monroe,1447,Breddeler Hill,Tomah
-Oconto,1781,Carter Hills,Reservoir Pond
-Oneida,1800,,Parrish
-Outagamie,1010,,Greenville
-Ozaukee,980,,Five Corners
-Ozaukee,980,,Newburg
-Ozaukee,980,,Port Washington W
-Ozaukee,980,,Random Lake
-Pepin,1300,Rohrscheib Hill,Rock Falls
-Pierce,1280,,Spring Valley
-Polk,1410,Frederic Tower Hill,Fredrick
-Portage,1320,,Blaine
-Price,1952,Timms Hill,Timms Hill
-Racine,952,Buena Park Hill,Waterford
-Richland,1300,Pleasant Ridge,West Lima
-Rock,1080,,Orfordville
-Rusk,1750,Blue Hills,Weyerhauser
-St. Croix,1320,,Wilson
-Sauk,1593,Sauk Point,Baraboo
-Sawyer,1801,Meteor Hill,Edgewater
-Shawano,1490,,Aniwa
-Sheboygan,1312,Parnell Hill,Cascade
-Taylor,1840,,Rib Lake
-Trempealeau,1360,,Elk Creek
-Vernon,1360,Irish Ridge,Dell
-Vernon,1360,Irish Ridge,Dell
-Vilas,1901,,Phelps
-Vilas,1905,,Phelps
-Walworth,1158,,Walworth
-Washburn,1480,,Stone Lake
-Washington,1330,Powder Hill,Hartford East
-Washington,1330,Holy Hill,Merton
-Washington,1332,,Merton
-Waukesha,1230,Lapham Peak,Oconomoc East
-Waupaca,1220,,Iola
-Waushara,1304,,Wautoma NE
-Winnebago,996,,Berlin
-Wood,1481,Powers Bluff,Arpin
+﻿county,name,map sheet,elevation,totalarea,landarea,waterarea
+Adams,Friendship Mound,Adams,1290,689,646,43
+Ashland,Mount Whittlesey,Mount Whittlesey,1872,2292,1045,1247
+Barron,Blue Hills,Strickland,1630,890,863,27
+Bayfield,Mount Telemark,Cable,1700,2042,1478,564
+Brown,Morrison Hill,Greenleaf,1020,616,530,86
+Buffalo,Montana Ridge,Lookout,1360,710,672,38
+Burnett,,Timberland,1470,880,822,58
+Calumet,North Tower Hill,Brothertown,1130,397,318,79
+Chippewa,Flambeau Ridge,Flambeau Ridge,1530,1041,1008,33
+Clark,,Abbotsford,1480,1219,1210,9
+Columbia,Baraboo Range,Durwoods Glen,1480,796,766,30
+Crawford,Rising Sun Ridge,Rising Sun,1322,600,571,29
+Dane,East Blue Mound,Blue Mounds,1489,1238,1197,41
+Dodge,,Nenno,1230,907,876,31
+Door,,Namur,860,2370,482,1888
+Douglas,Summit Hill,Empire Swamp,1369,1480,1304,176
+Dunn,Dunnewa Hill,Colfax North,1354,864,850,14
+Eau Claire,,Price,1340,645,638,7
+Florence,,Long Lake NE,1730,497,488,9
+Fond du Lac,Kettle Moraine,Eden,1270,766,720,46
+Forest,Sugar Bush Hill,Lake Lucerne,1939,1046,1014,32
+Grant,Military Ridge,Long Hollow,1240,1183,1147,36
+Green,,New Glarus,1173,584.5,584,0.5
+Green Lake,,Green Lake,1090,380,349,31
+Iowa,West Blue Mound,Blue Mounds,1719,768,763,5
+Iron,Penokee Range,Mt. Whittlesey,1860,919,758,161
+Jackson,Saddle Mound,Hatfield SE,1409,1001,988,13
+Jefferson,Kettle Moraine,Little Prairie,1062,582,556,26
+Juneau,Johnson Hill,New Lisbon S.,1380,804,767,37
+Kenosha,,Silver Lake,994,754,272,482
+Kewaunee,Cherneyville Hill,Strangelville,1020,1085,343,742
+La Crosse,Wadels Hill,Rosedale,1400,479,451,28
+Lafayette,N. Platte Mound,Rewey,1440,635,634,1
+Langlade,Kent Tower Hill,Polar,1903,888,871,17
+Lincoln,Lookout Mountain,Parrish,1920,907,879,28
+Manitowoc,,School Hill,1047,1493,589,904
+Marathon,Rib Mountain,Wausau Wast,1924,1576,1545,31
+Marinette,,Armstrong Cr.,1660,1550,1399,151
+Marquette,,Westfield West,1320,465,456,9
+Menominee,,Zoar,1433,365,358,7
+Milwaukee,,Hales Corners,868,1189,241,948
+Monroe,Greenfield Hill,Alderwood Lake,1450,908,901,7
+Oconto,Carter Hills,Reservoir Pond,1781,1149,998,151
+Oneida,,Parrish,1800,1236,1113,123
+Outagamie,,Greenville,1010,645,638,7
+Ozaukee,,Five Corners,980,1116,233,883
+Pepin,Rohrscheib Hill,Rock Falls,1300,249,232,17
+Pierce,,Spring Valley,1280,592,574,18
+Polk,Frederic Tower Hill,Fredrick,1410,956,914,42
+Portage,,Blaine,1320,823,801,22
+Price,Timms Hill,Timms Hill,1952,1278,1254,24
+Racine,Buena Park Hill,Waterford,952,793,333,460
+Richland,Pleasant Ridge,West Lima,1300,589,586,3
+Rock,,Orfordville,1080,726,718,8
+Rusk,Blue Hills,Weyerhauser,1750,931,914,17
+St. Croix,,Wilson,1320,735,722,13
+Sauk,Sauk Point,Baraboo,1593,849,831,18
+Sawyer,Meteor Hill,Edgewater,1801,1350,1257,93
+Shawano,,Aniwa,1490,909,893,16
+Sheboygan,Parnell Hill,Cascade,1312,1271,511,760
+Taylor,,Rib Lake,1840,985,975,10
+Trempealeau,,Elk Creek,1360,742,733,9
+Vernon,Irish Ridge,Dell,1360,817,792,25
+Vilas,,Phelps,1901,998,857,141
+Walworth,,Walworth,1158,576,555,21
+Washburn,,Stone Lake,1480,853,797,56
+Washington,,Merton,1332,436,431,5
+Waukesha,Lapham Peak,Oconomoc East,1230,581,550,31
+Waupaca,,Iola,1220,775,758,17
+Waushara,,Wautoma NE,1304,637,626,11
+Winnebago,,Berlin,996,578,434,144
+Wood,Powers Bluff,Arpin,1481,809,793,16
