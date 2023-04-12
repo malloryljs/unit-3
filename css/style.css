@@ -16,3 +16,8 @@
     font-size: 1.5em;
     font-weight: bold;
 }
+.states {
+    fill: #FFF;
+    stroke: rgb(100, 100, 100);
+    stroke-width: 2px;
+}
