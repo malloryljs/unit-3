@@ -3,7 +3,6 @@
     fill: none;
     stroke: black;
     stroke-width: 1px;
-    shape-rendering: crispEdges;
 }
 
 .axis text {
@@ -18,6 +17,6 @@
 }
 .states {
     fill: #FFF;
-    stroke: rgb(100, 100, 100);
+    stroke: rgb(27, 27, 27);
     stroke-width: 2px;
 }
