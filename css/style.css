@@ -17,6 +17,9 @@
 }
 .states {
     fill: #FFF;
-    stroke: rgb(27, 27, 27);
+    stroke: #CCC;
     stroke-width: 2px;
+}
+.map {
+    border: medium solid #999;
 }

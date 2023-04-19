@@ -16,17 +16,17 @@ function setMap(){
 
     //create Albers equal area conic projection centered on France
     var projection = d3.geoAlbers()
-        .center([0, 46.2])
-        .rotate([-2, 0])
-        .parallels([43, 62])
-        .scale(2500)
+        .center([-8.35, 33.6])
+        .rotate([80.74, -10.00, 0])
+        .parallels([29.50, 45.5])
+        .scale(3500.51)
         .translate([width / 2, height / 2]);
 
     var path = d3.geoPath()
         .projection(projection);
 
 
-    //use Promise.all to parallelize asynchronous data loading
+    //use Promise.all to parallelize asynchronous data loading 4265.66
     var promises = [];    
     promises.push(d3.csv("data/WIHillHeights.csv")); //load attributes from csv    
     promises.push(d3.json("data/stateBoundaries.topojson")); //load background spatial data    
@@ -42,8 +42,8 @@ function setMap(){
             console.log(county);    
         
             //translate europe TopoJSON
-            var statesUS = topojson.feature(state, state.objects.EuropeCountries),
-                countiesWI = topojson.feature(county, county.objects.County_Boundaries_24K).features;
+            var statesUS = topojson.feature(state, state.objects.states),
+                countiesWI = topojson.feature(county, county.objects.wiCounties).features;
 
                 console.log(statesUS)
             //add Europe countries to map
@@ -53,14 +53,15 @@ function setMap(){
                 .attr("d", path);
 
             //add France regions to map
-            /*var counties = map.selectAll(".counties")
+            var counties = map.selectAll(".counties")
                 .data(countiesWI)
                 .enter()
                 .append("path")
                 .attr("class", function(d){
-                    return "counties " + d.properties.adm1_code;
+                    return "counties " + d.properties.county;
                 })
-                .attr("d", path);*/
+                .attr("d", path);
+
 
             //examine the results
             console.log(statesUS);
