@@ -92,7 +92,7 @@
         //create a scale to size bars proportionally to frame and for axis
         var yScale = d3.scaleLinear()
             .range([463, 0])
-            .domain([0, 100]);
+            .domain([0, 2500]);
 
         //set bars for each province
         var bars = chart.selectAll(".bar")
@@ -124,7 +124,7 @@
             .attr("x", 40)
             .attr("y", 40)
             .attr("class", "chartTitle")
-            .text("Number of Variable " + expressed[3] + " in each region");
+            .text("Number of Variable " + expressed[0] + " in each region");
 
         //create vertical axis generator
         var yAxis = d3.axisLeft()
@@ -144,6 +144,8 @@
             .attr("transform", translate);
         };
 
+        
+
         function joinData(countiesWI, csvdata){
             for (var i=0; i<csvdata.length; i++){
                 var csvRegion = csvdata[i]; //the current region
@@ -153,7 +155,7 @@
                 for (var a=0; a<countiesWI.length; a++){
         
                     var geojsonProps = countiesWI[a].properties; //the current region geojson properties
-                    var geojsonKey = geojsonProps.county; //the geojson primary key
+                    var geojsonKey = geojsonProps.NAME; //the geojson primary key
         
                     //where primary keys match, transfer csv data to geojson properties object
                     if (geojsonKey == csvKey){
