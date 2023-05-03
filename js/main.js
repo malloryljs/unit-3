@@ -1,7 +1,7 @@
 (function(){
 
     //pseudo-global variables
-    var attrArray = ["elevationFT", "totalareaSQMiles", "totallandSQMiles", "totalwaterSQMiles", "forestSQMiles"]; //list of attributes
+    var attrArray = ["elevationFt", "totalareaSQMiles", "totallandSQMiles", "totalwaterSQMiles", "forestSQMiles"]; //list of attributes
     var expressed = attrArray[0]; //initial attribute
     
     //begin script when window loads
@@ -52,7 +52,7 @@
                     .attr("class", "states")
                     .attr("d", path);
                 
-                countiesWI = joinData(countiesWI, map, path);
+                countiesWI = joinData(countiesWI, csvdata);
                 
                 var colorScale = makeColorScale(csvdata);
 
