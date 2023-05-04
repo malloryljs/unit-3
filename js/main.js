@@ -1,7 +1,7 @@
 (function(){
 
     //pseudo-global variables
-    var attrArray = ["elevationFt", "totalareaSQMiles", "totallandSQMiles", "totalwaterSQMiles", "forestSQMiles"]; //list of attributes
+    var attrArray = ["elevationFt", "totalareaSQMiles", "landareaSQMiles", "waterareaSQMiles", "forestSQMiles"]; //list of attributes
     var expressed = attrArray[0]; //initial attribute
 
     //chart frame dimensions
@@ -37,10 +37,10 @@
 
         //create Albers equal area conic projection centered on France
         var projection = d3.geoAlbers()
-            .center([-8.35, 33.6])
-            .rotate([80.74, -10.00, 0])
-            .parallels([29.50, 45.5])
-            .scale(3500.51)
+            .center([-9.09, 57.24])
+            .rotate([82.82, 12.73, 0])
+            .parallels([16.32, 53.71])
+            .scale(4568.68)
             .translate([width / 2, height / 2]);
 
         var path = d3.geoPath()
@@ -75,7 +75,7 @@
 
                 setChart(csvdata, colorScale);
 
-                createDropdown();
+                createDropdown(csvdata);
 
             };
     };
@@ -109,7 +109,7 @@
         //create a scale to size bars proportionally to frame and for axis
         var yScale = d3.scaleLinear()
             .range([463, 0])
-            .domain([0, 2500]);
+            .domain([0, 2000]);
 
         //set bars for each province
         var bars = chart.selectAll(".bar")
@@ -159,7 +159,10 @@
             .attr("width", chartInnerWidth)
             .attr("height", chartInnerHeight)
             .attr("transform", translate);
+       
+        updateChart(bars, csvdata.length, colorScale);   
         };
+        
 
     function createDropdown(csvdata){
         //add select element
@@ -193,7 +196,9 @@
         var colorScale = makeColorScale(csvdata);
     
         //recolor enumeration units
-        var regions = d3.selectAll(".regions")
+        var regions = d3.selectAll(".counties")
+            .transition()
+            .duration(1000)
             .style("fill", function(d){            
                 var value = d.properties[expressed];            
                 if(value) {                
@@ -208,6 +213,11 @@
             .sort(function(a, b){
                 return b[expressed] - a[expressed];
             })
+            .transition() //add animation
+            .delay(function(d, i){
+                return i * 20
+            })
+            .duration(500)
             .attr("x", function(d, i){
                 return i * (chartInnerWidth / csvdata.length) + leftPadding;
             })
@@ -226,7 +236,39 @@
                 } else {                
                     return "#ccc";            
                 }    
+                
+        
         });
+
+        updateChart(bars, csvdata.length, colorScale);
+
+    };
+
+    //function to position, size, and color bars in chart
+    function updateChart(bars, n, colorScale){
+        //position bars
+        bars.attr("x", function(d, i){
+                return i * (chartInnerWidth / n) + leftPadding;
+            })
+            //size/resize bars
+            .attr("height", function(d, i){
+                return 463 - yScale(parseFloat(d[expressed]));
+            })
+            .attr("y", function(d, i){
+                return yScale(parseFloat(d[expressed])) + topBottomPadding;
+            })
+            //color/recolor bars
+            .style("fill", function(d){            
+                var value = d[expressed];            
+                if(value) {                
+                    return colorScale(value);            
+                } else {                
+                    return "#ccc";            
+                }    
+        });
+
+        var chartTitle = d3.select(".chartTitle")
+            .text("Number of Variable " + expressed[3] + " in each region");
     };
 
     function joinData(countiesWI, csvdata){
@@ -258,11 +300,11 @@
     //Example 1.4 line 11...function to create color scale generator
     function makeColorScale(data){
         var colorClasses = [
-            "#D4B9DA",
-            "#C994C7",
-            "#DF65B0",
-            "#DD1C77",
-            "#980043"
+            "#f6eff7",
+            "#bdc9e1",
+            "#67a9cf",
+            "#1c9099",
+            "#016c59"
         ];
 
         //create color scale generator
