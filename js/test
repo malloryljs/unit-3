@@ -111,31 +111,6 @@
             .range([463, 0])
             .domain([0, 2500]);
 
-        //set bars for each province
-        var bars = chart.selectAll(".bar")
-            .data(csvdata)
-            .enter()
-            .append("rect")
-            .sort(function(a, b){
-                return b[expressed]-a[expressed]
-            })
-            .attr("class", function(d){
-                return "bar " + d.county;
-            })
-            .attr("width", chartInnerWidth / csvdata.length - 1)
-            .attr("x", function(d, i){
-                return i * (chartInnerWidth / csvdata.length) + leftPadding;
-            })
-            .attr("height", function(d, i){
-                return 463 - yScale(parseFloat(d[expressed]));
-            })
-            .attr("y", function(d, i){
-                return yScale(parseFloat(d[expressed])) + topBottomPadding;
-            })
-            .style("fill", function(d){
-                return colorScale(d[expressed]);
-            });
-
         //create a text element for the chart title
         var chartTitle = chart.append("text")
             .attr("x", 40)
@@ -159,8 +134,52 @@
             .attr("width", chartInnerWidth)
             .attr("height", chartInnerHeight)
             .attr("transform", translate);
-        };
+        
+        //in setChart()...set bars for each province
+        var bars = chart.selectAll(".bar")
+            .data(csvdata)
+            .enter()
+            .append("rect")
+            .sort(function(a, b){
+                return b[expressed]-a[expressed]
+            })
+            .attr("class", function(d){
+                return "bar " + d.adm1_code;
+            })
+            .attr("width", chartInnerWidth / csvdata.length - 1)
+            .on("mouseover", function(event, d){
+                highlight(d);
+        });
 
+        updateChart(bars, csvdata.length, colorScale);
+    };
+
+    //function to position, size, and color bars in chart
+    function updateChart(bars, n, colorScale){
+        //position bars
+        bars.attr("x", function(d, i){
+                return i * (chartInnerWidth / n) + leftPadding;
+            })
+            //size/resize bars
+            .attr("height", function(d, i){
+                return 463 - yScale(parseFloat(d[expressed]));
+            })
+            .attr("y", function(d, i){
+                return yScale(parseFloat(d[expressed])) + topBottomPadding;
+            })
+            //color/recolor bars
+            .style("fill", function(d){            
+                var value = d[expressed];            
+                if(value) {                
+                    return colorScale(value);            
+                } else {                
+                    return "#ccc";            
+                }    
+        });
+        var chartTitle = d3.select(".chartTitle")
+            .text("Number of Variable " + expressed[3] + " in each region");
+    };
+    
     function createDropdown(csvdata){
         //add select element
         var dropdown = d3.select("body")
@@ -192,16 +211,18 @@
         //recreate the color scale
         var colorScale = makeColorScale(csvdata);
     
-        //recolor enumeration units
+        //Example 1.5 line 9...recolor enumeration units
         var regions = d3.selectAll(".regions")
+            .transition()
+            .duration(1000)
             .style("fill", function(d){            
                 var value = d.properties[expressed];            
                 if(value) {                
-                    return colorScale(value);            
+                    return colorScale(value);           
                 } else {                
                     return "#ccc";            
                 }    
-            });
+        });
         //Sort, resize, and recolor bars
         var bars = d3.selectAll(".bar")
             //Sort bars
@@ -296,8 +317,20 @@
                     if(value) {                
                         return colorScale(d.properties[expressed]);            
                     } else {                
-                        return "#ccc";            
-                    }    
-            });
+                        return "#ccc";  
+                    }
+                    
+                })
+                .on("mouseover", function(event, d){
+                        highlight(d.properties);
+                });
+    };
+
+    //function to highlight enumeration units and bars
+    function highlight(props){
+        //change stroke
+        var selected = d3.selectAll("." + props.NAME)
+            .style("stroke", "blue")
+            .style("stroke-width", "2");
     };
 })();
