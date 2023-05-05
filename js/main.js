@@ -120,20 +120,14 @@
                 return b[expressed]-a[expressed]
             })
             .attr("class", function(d){
-                return "bar " + d.county;
+                return "bar " + d.NAME;
             })
             .attr("width", chartInnerWidth / csvdata.length - 1)
-            .attr("x", function(d, i){
-                return i * (chartInnerWidth / csvdata.length) + leftPadding;
-            })
-            .attr("height", function(d, i){
-                return 463 - yScale(parseFloat(d[expressed]));
-            })
-            .attr("y", function(d, i){
-                return yScale(parseFloat(d[expressed])) + topBottomPadding;
-            })
-            .style("fill", function(d){
-                return colorScale(d[expressed]);
+            .on("mouseover", function(event, d){
+                highlight(d);
+
+            var desc = bars.append("desc")
+                .text('{"stroke": "none", "stroke-width": "0px"}'); 
             });
 
         //create a text element for the chart title
@@ -339,7 +333,21 @@
                         return colorScale(d.properties[expressed]);            
                     } else {                
                         return "#ccc";            
-                    }    
+                    }  
+                })
+                
+            .on("mouseover", function(event, d){
+                highlight(d.properties);
+
+            var desc = counties.append("desc")
+                .text('{"stroke": "#000", "stroke-width": "0.5px"}');
             });
+    };
+
+    function highlight(props){
+        //change stroke
+        var selected = d3.selectAll("." + props.NAME)
+            .style("stroke", "blue")
+            .style("stroke-width", "2");
     };
 })();
