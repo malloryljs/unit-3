@@ -17,7 +17,7 @@
     //create a scale to size bars proportionally to frame and for axis
     var yScale = d3.scaleLinear()
         .range([463, 0])
-        .domain([0, 110]);
+        .domain([0, 125]);
 
     //begin script when window loads
     window.onload = setMap();
@@ -77,20 +77,14 @@
 
                 createDropdown(csvdata);
 
+                setLabel(csvdata);
+
             };
     };
 
    //function to create coordinated bar chart
     function setChart(csvdata, colorScale){
-        //chart frame dimensions
-        var chartWidth = window.innerWidth * 0.425,
-            chartHeight = 473,
-            leftPadding = 25,
-            rightPadding = 2,
-            topBottomPadding = 5,
-            chartInnerWidth = chartWidth - leftPadding - rightPadding,
-            chartInnerHeight = chartHeight - topBottomPadding * 2,
-            translate = "translate(" + leftPadding + "," + topBottomPadding + ")";
+        
 
         //create a second svg element to hold the bar chart
         var chart = d3.select("body")
@@ -125,10 +119,14 @@
             .attr("width", chartInnerWidth / csvdata.length - 1)
             .on("mouseover", function(event, d){
                 highlight(d);
+            })
 
-            var desc = bars.append("desc")
-                .text('{"stroke": "none", "stroke-width": "0px"}'); 
-            });
+            .on("mouseout", function(event, d){
+                dehighlight();
+            })
+            .on("mousemove", moveLabel);
+            
+        updateChart(bars, csvdata.length, colorScale);   
 
         //create a text element for the chart title
         var chartTitle = chart.append("text")
@@ -154,7 +152,7 @@
             .attr("height", chartInnerHeight)
             .attr("transform", translate);
        
-        updateChart(bars, csvdata.length, colorScale);   
+        
         };
         
 
@@ -201,6 +199,7 @@
                     return "#ccc";            
                 }    
             });
+        
         //Sort, resize, and recolor bars
         var bars = d3.selectAll(".bar")
             //Sort bars
@@ -316,6 +315,23 @@
         return colorScale;
     };
     
+    function highlight(props){
+        //change stroke
+        var selected = d3.selectAll("." + props.NAME)
+            .style("stroke", "blue")
+            .style("stroke-width", "2");
+    };
+
+    function dehighlight(){
+        //change stroke
+        var regions = d3.selectAll(".counties")
+            .style("stroke", "black")
+            .style("stroke-width", "0.5");
+
+        var regions = d3.selectAll(".bar")
+            .style("stroke", "none")
+            .style("stroke-width", "0.0");
+    };
 
     function setEnumerationUnits(countiesWI,map,path,colorScale){    
         //add wiconsin counties to map    
@@ -337,17 +353,60 @@
                 })
                 
             .on("mouseover", function(event, d){
-                highlight(d.properties);
+                highlight(d.properties)
+            })
 
-            var desc = counties.append("desc")
-                .text('{"stroke": "#000", "stroke-width": "0.5px"}');
-            });
+            .on("mouseout", function(event, d){
+                dehighlight();
+            })
+            .on("mousemove", moveLabel);
+
+            
+            
     };
 
-    function highlight(props){
-        //change stroke
-        var selected = d3.selectAll("." + props.NAME)
-            .style("stroke", "blue")
-            .style("stroke-width", "2");
+    //function to create dynamic label
+    function setLabel(props){
+        //label content
+        var labelAttribute = "<h1>" + props[expressed] +
+            "</h1><b>" + expressed + "</b>";
+
+        //create info label div
+        var infolabel = d3.select("body")
+            .append("div")
+            .attr("class", "infolabel")
+            .attr("id", props.NAME + "_label")
+            .html(labelAttribute);
+
+        var regionName = infolabel.append("div")
+            .attr("class", "labelname")
+            .html(props.county);
     };
+
+    //Example 2.8 line 1...function to move info label with mouse
+    function moveLabel(){
+        //get width of label
+        var labelWidth = d3.select(".infolabel")
+            .node()
+            .getBoundingClientRect()
+            .width;
+
+        //use coordinates of mousemove event to set label coordinates
+        var x1 = event.clientX + 10,
+            y1 = event.clientY - 75,
+            x2 = event.clientX - labelWidth - 10,
+            y2 = event.clientY + 25;
+
+        //horizontal label coordinate, testing for overflow
+        var x = event.clientX > window.innerWidth - labelWidth - 20 ? x2 : x1; 
+        //vertical label coordinate, testing for overflow
+        var y = event.clientY < 75 ? y2 : y1; 
+
+        d3.select(".infolabel")
+            .style("left", x + "px")
+            .style("top", y + "px");
+    };
+   
+
+
 })();
