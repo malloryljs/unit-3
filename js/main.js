@@ -114,7 +114,7 @@
                 return b[expressed]-a[expressed]
             })
             .attr("class", function(d){
-                return "bar " + d.NAME;
+                return "bar " + d.county;
             })
             .attr("width", chartInnerWidth / csvdata.length - 1)
             .on("mouseover", function(event, d){
@@ -267,7 +267,7 @@
     function joinData(countiesWI, csvdata){
         for (var i=0; i<csvdata.length; i++){
             var csvRegion = csvdata[i]; //the current region
-            var csvKey = csvRegion.county; //the CSV primary key
+            var csvKey = csvRegion.NAME; //the CSV primary key
     
             //loop through geojson regions to find correct region
             for (var a=0; a<countiesWI.length; a++){
@@ -340,7 +340,7 @@
             .enter()        
             .append("path")        
             .attr("class", function(d){            
-                return "counties " + d.properties.county;        
+                return "counties " + d.properties.NAME;        
             })        
             .attr("d", path)        
                 .style("fill", function(d){            
@@ -380,7 +380,7 @@
 
         var regionName = infolabel.append("div")
             .attr("class", "labelname")
-            .html(props.county);
+            .html(props.NAME);
     };
 
     //Example 2.8 line 1...function to move info label with mouse
