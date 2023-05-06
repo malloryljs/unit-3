@@ -375,12 +375,12 @@
         var infolabel = d3.select("body")
             .append("div")
             .attr("class", "infolabel")
-            .attr("id", props.NAME + "_label")
+            .attr("id", props.WIcounties + "_label")
             .html(labelAttribute);
 
         var regionName = infolabel.append("div")
             .attr("class", "labelname")
-            .html(props.NAME);
+            .html(props.WIcounties);
     };
 
     //Example 2.8 line 1...function to move info label with mouse
